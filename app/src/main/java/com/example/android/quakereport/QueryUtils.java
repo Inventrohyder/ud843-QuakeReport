@@ -167,7 +167,7 @@ final class QueryUtils {
         return earthquakes;
     }
 
-    static List fetchEarthquakes(String url)  {
+    static List fetchEarthquakeData(String url)  {
 
         if(TextUtils.isEmpty(url)){
             return null;
