@@ -8,7 +8,7 @@ class Earthquake {
     /**
      * This is the magnitude of the {@link Earthquake} object
      */
-    private String mMag;
+    private double mMag;
 
     /**
      * This is the Place where the {@link Earthquake} hit
@@ -18,41 +18,41 @@ class Earthquake {
     /**
      * This is the date when the {@link Earthquake} struck
      */
-    private String mDate;
+    private long mTimeInMilliseconds;
+
+    /**
+     * This is the url to the earthquake page
+     */
+    private String mUrl;
 
     /**
      * Constructor for the {@link Earthquake} object
-     * @param mag is the magnitued of the {@link Earthquake}
-     * @param place is the place where the {@link Earthquake} struck
-     * @param date is the date when the {@link Earthquake} hit
+     *
+     * @param mag                is the magnitued of the {@link Earthquake}
+     * @param place              is the place where the {@link Earthquake} struck
+     * @param timeInMilliseconds is the timeInMilliseconds when the {@link Earthquake} hit
+     * @param url is the link to the {@Earthquake} page
      */
-    public Earthquake(String mag, String place, String date){
+    Earthquake(double mag, String place, long timeInMilliseconds, String url) {
         this.mMag = mag;
         this.mPlace = place;
-        this.mDate = date;
+        this.mTimeInMilliseconds = timeInMilliseconds;
+        this.mUrl = url;
     }
 
-    String getMag() {
+    double getMag() {
         return mMag;
     }
 
-    public void setMag(String mag) {
-        this.mMag = mag;
-    }
-
-    public String getPlace() {
+    String getPlace() {
         return mPlace;
     }
 
-    public void setPlace(String place) {
-        this.mPlace = place;
+    long getTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
 
-    public String getDate() {
-        return mDate;
-    }
-
-    public void setDate(String date) {
-        this.mDate = date;
+    public String getUrl() {
+        return mUrl;
     }
 }
