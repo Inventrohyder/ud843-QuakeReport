@@ -21,10 +21,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.net.ssl.HttpsURLConnection;
+
 /**
  * Helper methods related to requesting and receiving earthquake data from USGS.
  */
 final class QueryUtils {
+
+    private static final String LOG_TAG = QueryUtils.class.getName();
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -48,11 +52,11 @@ final class QueryUtils {
         try {
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setConnectTimeout(10000);
-            httpURLConnection.setReadTimeout(10000);
+            httpURLConnection.setConnectTimeout(1000000000);
+            httpURLConnection.setReadTimeout(100000000);
             httpURLConnection.connect();
 
-            if(httpURLConnection.getResponseCode() == 200) {
+           //if(httpURLConnection.getResponseCode() == 200) {
 
                 inputStream = httpURLConnection.getInputStream();
 
@@ -60,7 +64,7 @@ final class QueryUtils {
 
                 Log.w("JSon repsonse", jsonResponse);
 
-            }
+           //}
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -167,7 +171,15 @@ final class QueryUtils {
         return earthquakes;
     }
 
-    static List fetchEarthquakeData(String url)  {
+    static List<Earthquake> fetchEarthquakeData(String url)  {
+
+        Log.i(LOG_TAG, "TEST: onLoadFinished() called ...");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         if(TextUtils.isEmpty(url)){
             return null;
